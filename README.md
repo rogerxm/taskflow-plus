@@ -1,73 +1,72 @@
-# React + TypeScript + Vite
+# TaskFlow.Plus
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🎯 Descripción General
 
-Currently, two official plugins are available:
+TaskFlow.Plus es una aplicación de lista de tareas ("Todo App") moderna y responsiva, construida con React y gestionada con Redux Toolkit para el estado. Utiliza persistencia local para guardar automáticamente las tareas en el navegador del usuario.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Características Clave
 
-## React Compiler
+- ✅ Gestión Completa de Tareas: Añadir, completar/descompletar y eliminar tareas.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 📊 Seguimiento de Progreso: Tarjeta de estadísticas con porcentaje de tareas completadas.
 
-## Expanding the ESLint configuration
+- 🏷️ Filtrado: Ver todas las tareas, solo las activas o solo las completadas.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🔄 Drag & Drop (D&D): Reordenamiento de tareas mediante arrastrar y soltar (solo en la vista “Todas”).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- 💾 Persistencia: Guarda el estado de las tareas con localStorage.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠️ Tecnologías Utilizadas
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- React: Biblioteca principal para construir la interfaz de usuario.
+- Redux Toolkit (RTK): Lógica de estado centralizada y simplificada.
+- React Redux: Conecta React con el store de Redux.
+- TypeScript: Tipado estático para mayor robustez.
+- Lucide React: Iconos utilizados en la interfaz.
+- Tailwind CSS: Diseño y estilos de la aplicación.
+
+## 💻 Configuración del Proyecto
+
+1. Requisitos Previos:
+
+   Asegúrate de tener Node.js y npm (o yarn/pnpm) instalados.
+
+2. Instalación de Dependencias:
+
+   ```
+   En la raíz del proyecto ejecuta:
+
+   npm install
+
+   # o
+
+   yarn install
+   ```
+
+3. Ejecución
+
+   Inicia la aplicación en modo desarrollo:
+
+   ```
+   npm run dev
+
+   # o
+
+   yarn dev
+   ```
+
+La aplicación estará disponible en: http://localhost:5173
+
+## 📦 Estructura del Código
+
+La aplicación sigue un patrón de separación por características (Ducks/Feature Slices):
+
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+src/
+├─ redux/ # Lógica central de Redux (todoSlice.ts, hooks.ts)
+├─ types.ts # Tipos globales de TypeScript
+├─ components/
+│ ├─ ui/ # Componentes reutilizables (Input, Filtros, TaskItem...)
+│ └─ layout/ # Componentes de estructura (Persistencia, AppContent)
+└─ App.tsx # Componente raíz con el Provider de Redux
 ```
