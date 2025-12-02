@@ -28,6 +28,7 @@ const TodoList = () => {
 
   const handleDrop = (e: React.DragEvent, position: number) => {
     if (draggingItem.current === null) return;
+    e.preventDefault();
 
     // Obtener el índice real del item donde se soltó
     const droppedItem = filteredTodos[position];
